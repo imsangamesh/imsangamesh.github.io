@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instagram OAuth Example</title>
+  </head>
+  <body>
+    <h1>Instagram OAuth Example</h1>
+
+    <!-- Button to initiate the OAuth flow -->
+    <a
+      href="https://api.instagram.com/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_FIREBASE_URL&scope=user_profile,user_media&response_type=code">
+      Log in with Instagram
+    </a>
+
+    <!-- JavaScript to handle the authorization code -->
+    <script>
+      // Function to extract URL parameter values
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      // Check if the URL has an authorization code
+      var authorizationCode = getParameterByName("code");
+      if (authorizationCode) {
+        // Handle the authorization code (e.g., send it to your server)
+        console.log("Authorization code:", authorizationCode);
+      }
+    </script>
+  </body>
+</html>
